@@ -75,6 +75,7 @@ public class Model implements GraphicsUpdater
 		{
 			player = new Human(x, y);
 		}
+		player.setDest(x, y);
 		for (Sprite sprite : sprites)
 		{
 			sprite.setDest(x, y);
