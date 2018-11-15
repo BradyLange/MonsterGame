@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import mvc.GraphicsUpdater;
+import navigation.MoveStrategy;
+import navigation.Pair;
 
 /**
  * Sprite is a class defining the data of a 
@@ -32,6 +34,7 @@ public abstract class Sprite implements GraphicsUpdater
 	protected int dest_y;
 	protected int size;
 	protected int speed = 10;
+	private MoveStrategy ms;
 
 	/**
 	 * A Sprite constructor. 
@@ -81,8 +84,13 @@ public abstract class Sprite implements GraphicsUpdater
 	 * This method modifies the x and y fields of a Sprite object. 
 	 *
 	 */
-	public abstract void updatePosition();
-         	
+	public void updatePosition()
+	{
+		Pair coord = ms.move(x, y, dest_x, dest_y, speed);
+		x = coord.x;
+		y = coord.y;
+	}
+       
     // Misc. setters and getters
 	public Image getImage() { return image; }
     public int getX() { return x; }
@@ -94,11 +102,21 @@ public abstract class Sprite implements GraphicsUpdater
     	dest_y = y - getSize()/2;
 	}
     
+    public void setMoveStrategy(MoveStrategy ms)
+    {
+    	this.ms = ms;
+    }
+    
     public void setPos(int x, int y) 
     {
 		this.x = x - getSize()/2;
 		this.y = y - getSize()/2;
 	}
+    
+    public void setMoveStrat(MoveStrategy ms) 
+    {
+    	this.ms = ms;
+    }
     
 	public int getSize() {	return size; }
 	public void setSize(int size)   { this.size = size;   }

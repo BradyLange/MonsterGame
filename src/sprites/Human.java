@@ -39,38 +39,4 @@ public class Human extends Sprite
 	{
 		super(x, y, Settings.HUMAN_SIZE, Settings.HUMAN_SPEED, Settings.HUMAN_IMAGE);
 	}	
-	
-	/**
-	 * A method that uses a Human object's current 
-	 * position, destination, and speed to calculate 
-	 * a new (x, y) position for the Human object.
-	 * <p>
-	 * This method modifies the x and y fields of a Human object. 
-	 *
-	 */
-	@Override
-	public void updatePosition() 
-	{
-    	if (x < dest_x) 
-    	{
-    		int min = dest_x - x < speed ? dest_x - x : speed; 
-    		x += min;
-    	} 
-    	else if (x > dest_x) 
-    	{
-    		int min = x - dest_x < speed ? x - dest_x : speed; 
-    		x -= min;
-    	}
-    	        
-    	if (y < dest_y) 
-    	{
-    		int min = dest_y - y < speed ? dest_y - y : speed; 
-    		y += min;
-    	} 
-    	else if (y > dest_y) 
-    	{
-    		int min = y - dest_y < speed ? y - dest_y : speed; 
-    		y -= min;
-    	}
-	}  	
 }

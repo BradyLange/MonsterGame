@@ -10,7 +10,8 @@ import mvc.Controller;
 import mvc.Model;
 import mvc.Settings;
 import mvc.View;
-import sprites.Human;
+import navigation.RandomWalkStrategy;
+import navigation.SlowWalkStrategy;
 import sprites.Sprite;
 import sprites.Werewolf;
 import sprites.Zombie;
@@ -52,19 +53,25 @@ public class Driver
 	{
 		// Use random numbers for sprites x & y coordinates 
 		Random r = new Random();
-		int x = r.nextInt(Settings.WIDTH);
-		int y = r.nextInt(Settings.HEIGHT);
+		int x, y;
 		
 		// Create sprites 
+		// Zombie
+		x = r.nextInt(Settings.WIDTH);
+		y = r.nextInt(Settings.HEIGHT);
 		Zombie zombie = new Zombie(x, y);
+		zombie.setMoveStrat(new RandomWalkStrategy());
+		
+		// Werewolf
+		x = r.nextInt(Settings.WIDTH);
+		y = r.nextInt(Settings.HEIGHT);
 		Werewolf werewolf = new Werewolf(x, y);
-		Human human = new Human(x, y);
+		werewolf.setMoveStrat(new SlowWalkStrategy());
 		
 		// Add sprites to a collection
 		ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 		sprites.add(zombie);
 		sprites.add(werewolf);
-		sprites.add(human);
 		
 		Model model = new Model(sprites);
 		Controller controller = new Controller();

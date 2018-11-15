@@ -4,6 +4,8 @@ package mvc;
 import java.awt.Graphics;
 import java.util.List;
 
+import navigation.SlowWalkStrategy;
+import sprite_decorations.VikingHatDecoration;
 import sprites.Human;
 import sprites.Sprite;
 
@@ -55,8 +57,17 @@ public class Model implements GraphicsUpdater
 	{
 		for (Sprite sprite : sprites) 
 		{
+			if (player != null)
+			{
+				sprite.setDest(player.getX() + Settings.HUMAN_SIZE / 2, player.getY() + Settings.HUMAN_SIZE / 2);
+			}
 			sprite.updatePosition();
 			sprite.update(g);
+		}
+		if (player != null) 
+		{
+			player.updatePosition();
+			player.update(g);
 		}
 	}
 	
@@ -73,7 +84,8 @@ public class Model implements GraphicsUpdater
 	{
 		if (player == null)
 		{
-			player = new Human(x, y);
+			player = new VikingHatDecoration(new Human(x, y), -10, -100, -30);
+			player.setMoveStrat(new SlowWalkStrategy());
 		}
 		player.setDest(x, y);
 		for (Sprite sprite : sprites)

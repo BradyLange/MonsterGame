@@ -38,4 +38,8 @@ public final class Settings
 	public static final int HUMAN_SIZE          = 200;
 	public static final int HUMAN_SPEED 		= 10;
 	public static final String HUMAN_IMAGE 		= "Images/human.png";
+	
+	// Decorations
+	public static final String CHEESE_HAT_IMAGE = "Images/Decorations/cheese_hat.png";
+	public static final String VIKING_HAT_IMAGE = "Images/Decorations/viking_hat.png";
 }
